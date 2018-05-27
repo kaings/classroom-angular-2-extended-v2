@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <app-dashboard
+    (addServer)="onCreateServer($event)"
+    (addBlueprint)="onCreateBlueprint($event)"></app-dashboard>  <!-- passing object data, using '$event' -->
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-element
+      *ngFor="let element of servers; let x = index"
+      [element]="element"
+      (removeElement)="onDelElement(x)"></app-server-element>  <!-- for non-object type, using any variable seems to be OK. But, passing object, we should use '$event' -->
+    </div>
+  </div>
+</div>

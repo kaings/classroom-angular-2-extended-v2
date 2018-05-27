@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">{{ element.name }}</div>
+  <div class="panel-body">
+    <p>
+      <strong *ngIf="element.type === 'Server'" style="color:red;">{{ element.content }}</strong>
+      <em *ngIf="element.type === 'Blueprint'">{{ element.content }}</em>
+      <span style="float: right; cursor: pointer;"
+            (click)="onRemoveElement(x)">X</span>
+    </p>
+  </div>
+</div>
