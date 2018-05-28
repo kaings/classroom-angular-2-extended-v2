@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,16 +12,22 @@ export class DashboardComponent implements OnInit {
   @Output() addServer = new EventEmitter<{ sName: string, sContent: string }>();
   @Output() addBlueprint = new EventEmitter<{ sName: string, sContent: string }>();
 
+  @ViewChild('serverContentInput') sContentInput: ElementRef;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  onAddServer() {
-    this.addServer.emit({ sName: this.serverName, sContent: this.serverContent });
+  /* using HTML local reference */
+  onAddServer(serverNameInput: HTMLInputElement) {
+    // console.log(serverNameInput.value);
+    this.addServer.emit({ sName: serverNameInput.value, sContent: this.sContentInput.nativeElement.value });
   }
 
-  onAddBlueprint() {
-    this.addBlueprint.emit({ sName: this.serverName, sContent: this.serverContent });
+  /* using @ViewChild ElementRef */
+  onAddBlueprint(serverNameInput: HTMLInputElement) {
+    // console.log(this.sContentInput.nativeElement.value);
+    this.addBlueprint.emit({ sName: serverNameInput.value, sContent: this.sContentInput.nativeElement.value });
   }
 }
