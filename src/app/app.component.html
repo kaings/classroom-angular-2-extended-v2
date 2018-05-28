@@ -12,7 +12,16 @@
       <app-server-element
       *ngFor="let element of servers; let x = index"
       [element]="element"
-      (removeElement)="onDelElement(x)"></app-server-element>  <!-- for non-object type, using any variable seems to be OK. But, passing object, we should use '$event' -->
+      (removeElement)="onDelElement(x)">
+
+        <p>
+          <strong *ngIf="element.type === 'Server'" style="color:red;">{{ element.content }}</strong>
+          <em *ngIf="element.type === 'Blueprint'">{{ element.content }}</em>
+          <span style="float: right; cursor: pointer;"
+                (click)="onRemoveElement(x)">X</span>
+        </p>
+
+      </app-server-element>  <!-- for non-object type, using any variable seems to be OK. But, passing object, we should use '$event' -->
     </div>
   </div>
 </div>
