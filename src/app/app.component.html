@@ -14,7 +14,7 @@
       [element]="element"
       (removeElement)="onDelElement(x)">
 
-        <p>
+        <p #contentParagraph>
           <strong *ngIf="element.type === 'Server'" style="color:red;">{{ element.content }}</strong>
           <em *ngIf="element.type === 'Blueprint'">{{ element.content }}</em>
           <span style="float: right; cursor: pointer;"
